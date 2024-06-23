@@ -20,7 +20,7 @@ public class RegistrationService {
     public void register(User user) {
         RoleAssignmentEntity roleAssignment = unconstrainedDataManager.create(RoleAssignmentEntity.class);
         roleAssignment.setUsername(user.getUsername());
-        roleAssignment.setRoleCode(UiMinimalRole.CODE);
+        roleAssignment.setRoleCode(NoteRedactorRole.CODE);
         roleAssignment.setRoleType(RoleAssignmentRoleType.RESOURCE);
 
         unconstrainedDataManager.save(user, roleAssignment);

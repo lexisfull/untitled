@@ -34,10 +34,6 @@ public class User implements JmixUserDetails, HasTimeZone {
     @OneToMany(mappedBy = "user")
     private List<Note> note;
 
-    @Version
-    @Column(name = "VERSION", nullable = false)
-    private Integer version;
-
     @Column(name = "USERNAME", nullable = false)
     protected String username;
 
@@ -79,14 +75,6 @@ public class User implements JmixUserDetails, HasTimeZone {
 
     public void setId(final UUID id) {
         this.id = id;
-    }
-
-    public Integer getVersion() {
-        return version;
-    }
-
-    public void setVersion(final Integer version) {
-        this.version = version;
     }
 
     public String getPassword() {
