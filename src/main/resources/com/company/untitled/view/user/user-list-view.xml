@@ -5,7 +5,8 @@
     <data>
         <collection id="usersDc"
                     class="com.company.untitled.entity.User">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+            </fetchPlan>
             <loader id="usersDl" readOnly="true">
                 <query>
                     <![CDATA[select e from User e order by e.username]]>

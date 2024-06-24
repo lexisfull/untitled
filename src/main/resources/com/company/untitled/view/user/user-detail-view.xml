@@ -5,7 +5,8 @@
     <data>
         <instance id="userDc"
                   class="com.company.untitled.entity.User">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+            </fetchPlan>
             <loader/>
         </instance>
     </data>

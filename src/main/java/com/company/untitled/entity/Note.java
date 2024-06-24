@@ -1,16 +1,19 @@
 package com.company.untitled.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
-import io.jmix.core.metamodel.annotation.JmixProperty;
+import io.jmix.data.DbView;
 import jakarta.persistence.*;
 
 import java.util.UUID;
 
+@DbView
 @JmixEntity
 @Table(name = "NOTE", indexes = {
-        @Index(name = "IDX_NOTE_USER", columnList = "")
+        @Index(name = "IDX_NOTE_REDACTOR", columnList = "REDACTOR_ID")
 })
 @Entity
 public class Note {
@@ -26,15 +29,17 @@ public class Note {
     @Column(name = "TEXT")
     private String text;
 
-    @JmixProperty
-    private User user;
+    @OnDeleteInverse(DeletePolicy.CASCADE)
+    @JoinColumn(name = "REDACTOR_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User redactor;
 
-    public User getUser() {
-        return user;
+    public User getRedactor() {
+        return redactor;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setRedactor(User redactor) {
+        this.redactor = redactor;
     }
 
     public String getText() {

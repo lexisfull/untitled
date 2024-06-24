@@ -6,7 +6,9 @@
     <data>
         <collection id="notesDc"
                     class="com.company.untitled.entity.Note">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="redactor" fetchPlan="_base"/>
+            </fetchPlan>
             <loader id="notesDl" readOnly="true">
                 <query>
                     <![CDATA[select e from Note e]]>
@@ -33,7 +35,6 @@
         <hbox id="buttonsPanel" classNames="buttons-panel">
             <button id="createBtn" action="notesDataGrid.create"/>
             <button id="editBtn" action="notesDataGrid.edit"/>
-            <button id="readBtn" action="notesDataGrid.read"/>
             <button id="removeBtn" action="notesDataGrid.remove"/>
             <simplePagination id="pagination" dataLoader="notesDl"/>
         </hbox>
@@ -45,12 +46,12 @@
             <actions>
                 <action id="create" type="list_create"/>
                 <action id="edit" type="list_edit"/>
-                <action id="read" type="list_read"/>
                 <action id="remove" type="list_remove"/>
             </actions>
             <columns resizable="true">
                 <column property="name"/>
                 <column property="text"/>
+                <column property="redactor"/>
             </columns>
         </dataGrid>
         <hbox id="lookupActions" visible="false">

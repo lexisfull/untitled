@@ -6,11 +6,10 @@ import io.jmix.security.role.assignment.RoleAssignmentRoleType;
 import io.jmix.securitydata.entity.RoleAssignmentEntity;
 import org.springframework.stereotype.Component;
 
+
 @Component
 public class RegistrationService {
 
-    // Use UnconstrainedDataManager to bypass data access check (https://docs.jmix.io/jmix/security/authorization.html#data-access-checks)
-    // when saving entities in anonymous session.
     private final UnconstrainedDataManager unconstrainedDataManager;
 
     public RegistrationService(UnconstrainedDataManager unconstrainedDataManager) {
@@ -20,8 +19,8 @@ public class RegistrationService {
     public void register(User user) {
         RoleAssignmentEntity roleAssignment = unconstrainedDataManager.create(RoleAssignmentEntity.class);
         roleAssignment.setUsername(user.getUsername());
-        roleAssignment.setRoleCode(NoteRedactorRole.CODE);
-        roleAssignment.setRoleType(RoleAssignmentRoleType.RESOURCE);
+        roleAssignment.setRoleCode(RowUserNoteRedactorRole.CODE);
+        roleAssignment.setRoleType(RoleAssignmentRoleType.ROW_LEVEL);
 
         unconstrainedDataManager.save(user, roleAssignment);
     }
